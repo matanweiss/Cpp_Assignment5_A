@@ -30,7 +30,7 @@ void MagicalContainer::addPrimeElement(Node *newNode)
             // newNode is the first prime
             else
             {
-                if(firstPrime)
+                if (firstPrime)
                     firstPrime->setPrevPrime(newNode);
                 newNode->setNextPrime(firstPrime);
                 firstPrime = newNode;
@@ -61,9 +61,21 @@ void MagicalContainer::removeElement(int data)
 {
     for (auto it = nodes.begin(); it != nodes.end(); ++it)
     {
-        if (data == (*it)->getData())
+        Node *curr = *it;
+        if (data == curr->getData())
         {
-            nodes.remove(new Node(data));
+            if (curr->getIsPrime())
+            {
+                Node *prev = curr->getPrevPrime();
+                Node *next = curr->getNextPrime();
+                if (prev)
+                    prev->setNextPrime(next);
+                if (next)
+                    next->setPrevPrime(prev);
+                if (firstPrime == curr)
+                    firstPrime = next;
+            }
+            nodes.remove(*it);
             return;
         }
     }
@@ -75,6 +87,18 @@ void MagicalContainer::printList()
     for (Node *n : nodes)
     {
         cout << " -> " << n->getData();
+    }
+    cout << endl;
+}
+
+void MagicalContainer::printPrimes()
+{
+    Node *curr = firstPrime;
+    cout << "PRIMES";
+    while (curr)
+    {
+        cout << " -> " << curr->getData();
+        curr = curr->getNextPrime();
     }
     cout << endl;
 }

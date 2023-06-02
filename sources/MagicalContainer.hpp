@@ -9,20 +9,23 @@ namespace ariel
 
 class MagicalContainer
 {
-    list<Node*> nodes;
-    Node* firstPrime;
+    list<Node *> nodes;
+    Node *firstPrime;
+
 public:
     MagicalContainer();
     void addElement(int data);
-    void addPrimeElement(Node* newNode);
-    void addNonPrimeElement(Node* newNode);
+    void addPrimeElement(Node *newNode);
+    void addNonPrimeElement(Node *newNode);
     void removeElement(int data);
     void printList();
-    Node* getFirstPrime();
+    void printPrimes();
+    Node *getFirstPrime();
     ~MagicalContainer();
-    // class AscendingIterator<Node*>
-    // {
-    //     Node* current;
+    class AscendingIterator
+    {
+        Node *curr;
 
-    // };
+    public:
+    };
 };

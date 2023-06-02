@@ -19,16 +19,11 @@ int main()
     container.addElement(9);
     container.addElement(3);
     container.printList();
-    Node *curr = container.getFirstPrime();
-    cout << "PRIMES";
-    while (curr)
-    {
-        cout << "->" << curr->getData();
-        curr = curr->getNextPrime();
-    }
-    cout << endl;
+    container.printPrimes();
+    container.removeElement(17);
+    container.printList();
+    container.printPrimes();
 
-    // container.removeElement(3);
     // container.removeElement(34); // number not exits
     // container.printList();
 
