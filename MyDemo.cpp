@@ -7,23 +7,27 @@ int main()
     Node a(4);
     Node b(5);
     Node c(4);
-    bool r = a==b;
-    bool r2 = a==c;
-    cout << r<< endl;
+    bool r = a == b;
+    bool r2 = a == c;
+    cout << r << endl;
     cout << r2 << endl;
 
     MagicalContainer container;
-    if(container.getFirstPrime())
-        cout << "there is a first prime" << endl;
     container.addElement(17);
-    if(container.getFirstPrime())
-        cout << "there is a first prime" << endl;
-    cout << container.getFirstPrime()->getData() << endl;
     container.addElement(2);
     container.addElement(25);
     container.addElement(9);
     container.addElement(3);
     container.printList();
+    Node *curr = container.getFirstPrime();
+    cout << "PRIMES";
+    while (curr)
+    {
+        cout << "->" << curr->getData();
+        curr = curr->getNextPrime();
+    }
+    cout << endl;
+
     // container.removeElement(3);
     // container.removeElement(34); // number not exits
     // container.printList();

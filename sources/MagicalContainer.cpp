@@ -14,8 +14,6 @@ void MagicalContainer::addPrimeElement(Node *newNode)
     Node *lastPrime = NULL;
     for (auto it = nodes.begin(); it != nodes.end(); ++it)
     {
-        if ((*it)->getIsPrime())
-            lastPrime = *it;
         if (newNode->getData() < (*it)->getData())
         {
             // there is a previous prime
@@ -32,21 +30,16 @@ void MagicalContainer::addPrimeElement(Node *newNode)
             // newNode is the first prime
             else
             {
+                if(firstPrime)
+                    firstPrime->setPrevPrime(newNode);
+                newNode->setNextPrime(firstPrime);
                 firstPrime = newNode;
-                Node *next = NULL;
-                while (it != nodes.end())
-                {
-                    if ((*it)->getIsPrime())
-                        next = *it;
-                    it++;
-                }
-                if (next)
-                    next->setPrevPrime(newNode);
-                newNode->setNextPrime(next);
             }
             nodes.insert(it, newNode);
             return;
         }
+        if ((*it)->getIsPrime())
+            lastPrime = *it;
     }
     if (!firstPrime)
         firstPrime = newNode;
