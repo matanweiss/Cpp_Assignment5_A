@@ -27,3 +27,20 @@ bool Node::operator==(const Node &other) const
 {
     return other.data == data;
 }
+
+void Node::setNext(Node *node)
+{
+    next = node;
+}
+void Node::setPrev(Node *node)
+{
+    prev = node;
+}
+Node *Node::getNext()
+{
+    return next;
+}
+Node *Node::getPrev()
+{
+    return prev;
+}

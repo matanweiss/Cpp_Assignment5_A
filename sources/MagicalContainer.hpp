@@ -9,8 +9,15 @@ namespace ariel
 
 class MagicalContainer
 {
-    list<Node *> nodes;
+    // list<Node *> nodes;
+    size_t listSize;
+    Node *head;
+    Node *tail;
     Node *firstPrime;
+    void addToPrimesList(Node *newNode, Node *lastPrime);
+    void addToList(Node *newNode, Node *lastNode);
+    void removeFromPrimesList(Node* curr);
+    void removeFromList(Node* curr);
 
 public:
     class AscendingIterator;
@@ -24,33 +31,33 @@ public:
     void printPrimes();
     size_t size();
     Node *getFirstPrime();
-    list<Node *>::const_iterator getBeginIterator() const;
-    list<Node *>::const_iterator getEndIterator() const;
+    // list<Node *>::const_iterator getBeginIterator() const;
+    // list<Node *>::const_iterator getEndIterator() const;
     list<Node *> getNodes() const;
     ~MagicalContainer();
 };
 
-class MagicalContainer::AscendingIterator
-{
-    list<Node *>::const_iterator it;
-    const MagicalContainer &container;
+// class MagicalContainer::AscendingIterator
+// {
+//     list<Node *>::const_iterator it;
+//     const MagicalContainer &container;
 
-public:
-    // AscendingIterator();
-    AscendingIterator(const AscendingIterator &other);
-    AscendingIterator(const MagicalContainer &container);
-    AscendingIterator(const MagicalContainer &other, list<Node *>::const_iterator it);
-    int operator*() const;
-    AscendingIterator &operator++();
-    AscendingIterator begin();
-    AscendingIterator end();
-    AscendingIterator operator=(const AscendingIterator &other);
-    bool operator==(const AscendingIterator &other) const;
-    bool operator!=(const AscendingIterator &other) const;
-    list<Node *>::const_iterator getIterator() const;
-    bool operator<(const AscendingIterator &other) const;
-    bool operator>(const AscendingIterator &other) const;
-};
+// public:
+//     // AscendingIterator();
+//     AscendingIterator(const AscendingIterator &other);
+//     AscendingIterator(const MagicalContainer &container);
+//     AscendingIterator(const MagicalContainer &other, list<Node *>::const_iterator it);
+//     int operator*() const;
+//     AscendingIterator &operator++();
+//     AscendingIterator begin();
+//     AscendingIterator end();
+//     AscendingIterator operator=(const AscendingIterator &other);
+//     bool operator==(const AscendingIterator &other) const;
+//     bool operator!=(const AscendingIterator &other) const;
+//     list<Node *>::const_iterator getIterator() const;
+//     bool operator<(const AscendingIterator &other) const;
+//     bool operator>(const AscendingIterator &other) const;
+// };
 
 class MagicalContainer::PrimeIterator
 {

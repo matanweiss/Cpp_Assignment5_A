@@ -7,12 +7,18 @@ class Node
 {
     int data;
     bool isPrime;
+    Node* next;
+    Node* prev;
     Node* nextPrime;
     Node* prevPrime;
 public:
     Node(int data);
     int getData();
     bool getIsPrime();
+    void setNext(Node* node);
+    void setPrev(Node* node);
+    Node* getNext();
+    Node* getPrev();
     void setNextPrime(Node* node);
     void setPrevPrime(Node* node);
     Node* getNextPrime();
