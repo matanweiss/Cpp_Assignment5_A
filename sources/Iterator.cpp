@@ -51,3 +51,7 @@ const MagicalContainer &MagicalContainer::Iterator::getContainer() const
 {
     return container;
 }
+
+    int MagicalContainer::Iterator::getType() const{
+        return type;
+    }

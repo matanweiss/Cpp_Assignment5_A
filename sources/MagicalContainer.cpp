@@ -119,7 +119,7 @@ void MagicalContainer::printPrimes()
     cout << endl;
 }
 
-Node *MagicalContainer::getFirstPrime()
+Node *MagicalContainer::getFirstPrime() const
 {
     return firstPrime;
 }
