@@ -9,7 +9,6 @@ namespace ariel
 
 class MagicalContainer
 {
-    // list<Node *> nodes;
     size_t listSize;
     Node *head;
     Node *tail;

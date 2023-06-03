@@ -30,20 +30,6 @@ void MagicalContainer::addPrimeElement(Node *newNode)
     if (!firstPrime)
         firstPrime = newNode;
     addToList(newNode, lastNode);
-    // nodes.emplace_back(newNode);
-    // for (auto it = nodes.begin(); it != nodes.end(); ++it)
-    // {
-    //     if (newNode->getData() < (*it)->getData())
-    //     {
-    //         addToPrimesList(newNode, lastPrime);
-    //         addToList(newNode, lastNode);
-    //         nodes.insert(it, newNode);
-    //         return;
-    //     }
-    //     if ((*it)->getIsPrime())
-    //         lastPrime = *it;
-    //     lastNode = *it;
-    // }
 }
 
 void MagicalContainer::addNonPrimeElement(Node *newNode)
@@ -61,13 +47,6 @@ void MagicalContainer::addNonPrimeElement(Node *newNode)
         curr = curr->getNext();
     }
     addToList(newNode, lastNode);
-    // for (auto it = nodes.begin(); it != nodes.end(); ++it)
-    //     if (newNode->getData() < (*it)->getData())
-    //     {
-    //         nodes.insert(it, newNode);
-    //         return;
-    //     }
-    // nodes.emplace_back(newNode);
 }
 
 void MagicalContainer::removeElement(int data)
@@ -87,28 +66,6 @@ void MagicalContainer::removeElement(int data)
         curr = curr->getNext();
     }
     listSize--;
-
-    // for (auto it = nodes.begin(); it != nodes.end(); ++it)
-    // {
-    //     Node *curr = *it;
-    //     if (data == curr->getData())
-    //     {
-    //         if (curr->getIsPrime())
-    //         {
-    //             Node *prev = curr->getPrevPrime();
-    //             Node *next = curr->getNextPrime();
-    //             if (prev)
-    //                 prev->setNextPrime(next);
-    //             if (next)
-    //                 next->setPrevPrime(prev);
-    //             if (firstPrime == curr)
-    //                 firstPrime = next;
-    //         }
-    //         nodes.remove(*it);
-    //         delete *it;
-    //         return;
-    //     }
-    // }
 }
 
 void MagicalContainer::removeFromPrimesList(Node *curr)
@@ -146,12 +103,6 @@ void MagicalContainer::printList()
         curr = curr->getNext();
     }
     cout << endl;
-    // cout << "HEAD";
-    // for (Node *n : nodes)
-    // {
-    //     cout << " -> " << n->getData();
-    // }
-    // cout << endl;
 }
 
 void MagicalContainer::printPrimes()
@@ -171,21 +122,6 @@ Node *MagicalContainer::getFirstPrime()
     return firstPrime;
 }
 
-// list<Node *>::const_iterator MagicalContainer::getBeginIterator() const
-// {
-//     return nodes.begin();
-// }
-
-// list<Node *>::const_iterator MagicalContainer::getEndIterator() const
-// {
-//     return nodes.end();
-// }
-
-// list<Node *> MagicalContainer::getNodes() const
-// {
-//     return nodes;
-// }
-
 MagicalContainer::~MagicalContainer()
 {
     Node *curr = head;
@@ -195,14 +131,11 @@ MagicalContainer::~MagicalContainer()
         curr = curr->getNext();
         delete temp;
     }
-    // for (auto it = nodes.begin(); it != nodes.end(); ++it)
-    //     delete *it;
 }
 
 size_t MagicalContainer::size()
 {
     return listSize;
-    // return nodes.size();
 }
 
 void MagicalContainer::addToPrimesList(Node *newNode, Node *lastPrime)
