@@ -38,7 +38,7 @@ class MagicalContainer::AscendingIterator
 public:
     // AscendingIterator();
     AscendingIterator(const AscendingIterator &other);
-    AscendingIterator(const MagicalContainer &other);
+    AscendingIterator(const MagicalContainer &container);
     AscendingIterator(const MagicalContainer &other, list<Node *>::const_iterator it);
     int operator*() const;
     AscendingIterator &operator++();
@@ -52,6 +52,13 @@ public:
     bool operator>(const AscendingIterator &other) const;
 };
 
-class MagicalContainer::PrimeIterator : public MagicalContainer::AscendingIterator{
-    Node* curr;
+class MagicalContainer::PrimeIterator
+{
+    Node *curr;
+    const MagicalContainer &container;
+    PrimeIterator(const MagicalContainer &container);
+    int operator*() const;
+    PrimeIterator &operator++();
+    PrimeIterator begin();
+    PrimeIterator end();
 };

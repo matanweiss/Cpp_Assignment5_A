@@ -6,7 +6,7 @@ MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator &
 
 MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &other, list<Node *>::const_iterator it) : it(it), container(other) {}
 
-MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &other) : container(other), it(other.getBeginIterator()) {}
+MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &container) : container(container), it(container.getBeginIterator()) {}
 
 int MagicalContainer::AscendingIterator ::operator*() const
 {
