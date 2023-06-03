@@ -15,6 +15,8 @@ int MagicalContainer::AscendingIterator ::operator*() const
 
 MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator ::operator++()
 {
+    if (!*it)
+        throw runtime_error("Iterator has aleady ended");
     ++it;
     return *this;
 }
@@ -27,6 +29,14 @@ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin()
 MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end()
 {
     return AscendingIterator(container, container.getEndIterator());
+}
+
+MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::operator=(const AscendingIterator &other)
+{
+    if (this != &other)
+        throw runtime_error("cannot assign from different cotainer");
+    it = other.it;
+    return *this;
 }
 
 bool MagicalContainer::AscendingIterator::operator==(const MagicalContainer::AscendingIterator &other) const
