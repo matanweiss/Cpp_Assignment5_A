@@ -1,17 +1,25 @@
 #include "MagicalContainer.hpp"
 
-MagicalContainer::Iterator::Iterator(const MagicalContainer &container) : container(container)
+MagicalContainer::Iterator::Iterator(const MagicalContainer &container, Node *curr, int type) : container(container), curr(curr), type(type)
 {
 }
 
-int MagicalContainer::Iterator::operator*() const
+int MagicalContainer::Iterator::operator*()
 {
+    if (!curr)
+        throw runtime_error("Element is NULL");
     return curr->getData();
 }
 
 bool MagicalContainer::Iterator::operator==(const Iterator &other) const
 {
-    return curr->getData() == other.curr->getData();
+    int thisValue = 0;
+    int otherValue = 0;
+    if (curr)
+        thisValue = curr->getData();
+    if (other.curr)
+        otherValue = other.curr->getData();
+    return thisValue == otherValue;
 }
 
 bool MagicalContainer::Iterator::operator!=(const Iterator &other) const
@@ -29,7 +37,7 @@ bool MagicalContainer::Iterator::operator>(const Iterator &other) const
     return !(*this < other || *this == other);
 }
 
-Node *MagicalContainer::Iterator::getCurr()
+Node *MagicalContainer::Iterator::getCurr() const
 {
     return curr;
 }
@@ -43,19 +51,3 @@ const MagicalContainer &MagicalContainer::Iterator::getContainer() const
 {
     return container;
 }
-
-// MagicalContainer::Iterator &MagicalContainer::Iterator::operator++()
-// {
-//     if (!curr)
-//         throw runtime_error("Iterator has already reached the end");
-//     curr = curr->getNext();
-//     return *this;
-// }
-
-// MagicalContainer::Iterator MagicalContainer::Iterator::operator=(const Iterator &other)
-// {
-//     if (this != &other)
-//         throw runtime_error("cannot assign from an iterator a different container");
-//     curr = other.curr;
-//     return *this;
-// }

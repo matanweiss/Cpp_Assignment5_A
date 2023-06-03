@@ -27,40 +27,39 @@ int main()
     // container.addElement(17);
     // container.removeElement(34); // number not exits
 
-    // // Print container size
-    // std::cout << "Size of container: " << container.size() << std::endl;
+    // Print container size
+    std::cout << "Size of container: " << container.size() << std::endl;
 
-    // // Use AscendingIterator to display elements in ascending order
-    // std::cout << "Elements in ascending order:\n";
-    // MagicalContainer::AscendingIterator ascIter(container);
-    // for (auto it = ascIter.begin(); it != ascIter.end(); ++it)
-    // {
-    //     std::cout << *it << ' '; // 2 3 9 17 25
-    // }
-    // std::cout << std::endl;
+    // Use AscendingIterator to display elements in ascending order
+    std::cout << "Elements in ascending order:\n";
+    MagicalContainer::AscendingIterator ascIter(container);
+    for (auto it = ascIter.begin(); it != ascIter.end(); ++it)
+    {
+        std::cout << *it << ' '; // 2 3 9 17 25
+    }
+    std::cout << std::endl;
 
-    // MagicalContainer::AscendingIterator ascendingIterator1(container);
-    // MagicalContainer::AscendingIterator ascendingIterator2(container);
-    // ++ascendingIterator2;
-    // ++ascendingIterator2;
-    // if (ascendingIterator1 < ascendingIterator2)
-    //     cout << "OK" << endl;
-    // if (!(ascendingIterator1 > ascendingIterator2))
-    //     cout << "OK" << endl;
-    // ++ascendingIterator1;
-    // if (ascendingIterator1 < ascendingIterator2)
-    //     cout << "OK" << endl;
-    // ++ascendingIterator1;
-    // if (!(ascendingIterator1 < ascendingIterator2))
-    //     cout << "OK" << endl;
-    // if(ascendingIterator1 == ascendingIterator2)
-    //     cout << "OK" << endl;
-    // ++ascendingIterator1;
-    // if(ascendingIterator1 != ascendingIterator2)
-    //     cout << "OK" << endl;
+    MagicalContainer::AscendingIterator ascendingIterator1(container);
+    MagicalContainer::AscendingIterator ascendingIterator2(container);
+    ++ascendingIterator2;
+    ++ascendingIterator2;
+    if (ascendingIterator1 < ascendingIterator2)
+        cout << "OK" << endl;
+    if (!(ascendingIterator1 > ascendingIterator2))
+        cout << "OK" << endl;
+    ++ascendingIterator1;
+    if (ascendingIterator1 < ascendingIterator2)
+        cout << "OK" << endl;
+    ++ascendingIterator1;
+    if (!(ascendingIterator1 < ascendingIterator2))
+        cout << "OK" << endl;
+    if(ascendingIterator1 == ascendingIterator2)
+        cout << "OK" << endl;
+    ++ascendingIterator1;
+    if(ascendingIterator1 != ascendingIterator2)
+        cout << "OK" << endl;
 
-
-    // container.printList();
+    container.printList();
 
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "MagicalContainer.hpp"
 
-MagicalContainer::MagicalContainer() : firstPrime(NULL), head(NULL), tail(NULL)
+MagicalContainer::MagicalContainer() : firstPrime(NULL), head(NULL), tail(NULL), listSize(0)
 {
 }
 void MagicalContainer::addElement(int data)
