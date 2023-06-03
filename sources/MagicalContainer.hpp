@@ -45,5 +45,7 @@ public:
         bool operator==(const AscendingIterator &other) const;
         bool operator!=(const AscendingIterator &other) const;
         list<Node *>::const_iterator getIterator() const;
+        bool operator<(const AscendingIterator &other) const;
+        bool operator>(const AscendingIterator &other) const;
     };
 };

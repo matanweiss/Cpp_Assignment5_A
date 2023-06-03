@@ -43,3 +43,13 @@ list<Node *>::const_iterator MagicalContainer::AscendingIterator::getIterator() 
 {
     return it;
 }
+
+bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator &other) const
+{
+    return (*it)->getData() < (*other.getIterator())->getData();
+}
+
+bool MagicalContainer::AscendingIterator::operator>(const AscendingIterator &other) const
+{
+    return !(*this < other || *this == other);
+}
