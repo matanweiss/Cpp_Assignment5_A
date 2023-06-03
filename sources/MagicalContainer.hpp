@@ -20,12 +20,23 @@ public:
     void removeElement(int data);
     void printList();
     void printPrimes();
+    size_t size();
     Node *getFirstPrime();
+    list<Node *> getNodes();
     ~MagicalContainer();
     class AscendingIterator
     {
-        Node *curr;
+        MagicalContainer *container;
+        list<Node *>::iterator it;
 
     public:
+        // default constructor
+        AscendingIterator(MagicalContainer container);
+        int operator*() const;
+        MagicalContainer::AscendingIterator &operator++();
+        list<Node *>::iterator begin();
+        list<Node *>::iterator end();
+        bool operator==(const MagicalContainer::AscendingIterator &other) const;
+        bool operator!=(const MagicalContainer::AscendingIterator &other) const;
     };
 };

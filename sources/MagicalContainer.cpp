@@ -108,8 +108,51 @@ Node *MagicalContainer::getFirstPrime()
     return firstPrime;
 }
 
+list<Node *> MagicalContainer::getNodes()
+{
+    return nodes;
+}
+
 MagicalContainer::~MagicalContainer()
 {
     for (auto it = nodes.begin(); it != nodes.end(); ++it)
         delete *it;
+}
+
+size_t MagicalContainer::size()
+{
+    return nodes.size();
+}
+
+int MagicalContainer::AscendingIterator ::operator*() const
+{
+    return (*it)->getData();
+}
+
+MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator ::operator++()
+{
+    ++it;
+    return *this;
+}
+
+MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer container) : it(container.getNodes().begin()), container(&container) {}
+
+list<Node *>::iterator MagicalContainer::AscendingIterator::begin()
+{
+    return container->getNodes().begin();
+}
+
+list<Node *>::iterator MagicalContainer::AscendingIterator::end()
+{
+    return container->getNodes().end();
+}
+
+bool MagicalContainer::AscendingIterator::operator==(const MagicalContainer::AscendingIterator &other) const
+{
+    return **this == *other;
+}
+
+bool MagicalContainer::AscendingIterator::operator!=(const MagicalContainer::AscendingIterator &other) const
+{
+    return **this != *other;
 }
