@@ -29,6 +29,8 @@ void MagicalContainer::addPrimeElement(Node *newNode)
     }
     if (!firstPrime)
         firstPrime = newNode;
+    else
+        addToPrimesList(newNode, lastPrime);
     addToList(newNode, lastNode);
 }
 

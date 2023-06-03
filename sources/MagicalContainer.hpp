@@ -15,12 +15,13 @@ class MagicalContainer
     Node *firstPrime;
     void addToPrimesList(Node *newNode, Node *lastPrime);
     void addToList(Node *newNode, Node *lastNode);
-    void removeFromPrimesList(Node* curr);
-    void removeFromList(Node* curr);
+    void removeFromPrimesList(Node *curr);
+    void removeFromList(Node *curr);
 
 public:
-    class AscendingIterator;
-    class PrimeIterator;
+    // class AscendingIterator;
+    // class PrimeIterator;
+    class Iterator;
     MagicalContainer();
     void addElement(int data);
     void addPrimeElement(Node *newNode);
@@ -30,10 +31,24 @@ public:
     void printPrimes();
     size_t size();
     Node *getFirstPrime();
-    // list<Node *>::const_iterator getBeginIterator() const;
-    // list<Node *>::const_iterator getEndIterator() const;
-    list<Node *> getNodes() const;
     ~MagicalContainer();
+};
+
+class MagicalContainer::Iterator
+{
+    Node *curr;
+    const MagicalContainer &container;
+
+public:
+    Iterator(const MagicalContainer &container);
+    int operator*() const;
+    virtual Iterator &operator++() = 0;
+    virtual Iterator &begin() const = 0;
+    virtual Iterator &end() const = 0;
+    bool operator==(const Iterator &other) const;
+    bool operator!=(const Iterator &other) const;
+    bool operator<(const Iterator &other) const;
+    bool operator>(const Iterator &other) const;
 };
 
 // class MagicalContainer::AscendingIterator
@@ -58,13 +73,13 @@ public:
 //     bool operator>(const AscendingIterator &other) const;
 // };
 
-class MagicalContainer::PrimeIterator
-{
-    Node *curr;
-    const MagicalContainer &container;
-    PrimeIterator(const MagicalContainer &container);
-    int operator*() const;
-    PrimeIterator &operator++();
-    PrimeIterator begin();
-    PrimeIterator end();
-};
+// class MagicalContainer::PrimeIterator
+// {
+//     Node *curr;
+//     const MagicalContainer &container;
+//     PrimeIterator(const MagicalContainer &container);
+//     int operator*() const;
+//     PrimeIterator &operator++();
+//     PrimeIterator begin();
+//     PrimeIterator end();
+// };

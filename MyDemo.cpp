@@ -21,6 +21,7 @@ int main()
     container.printList();
     container.printPrimes();
     container.removeElement(2);
+    container.addElement(29);
     container.printList();
     container.printPrimes();
     // container.addElement(17);
