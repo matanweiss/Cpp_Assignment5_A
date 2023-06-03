@@ -11,6 +11,7 @@ class Node
     Node* prev;
     Node* nextPrime;
     Node* prevPrime;
+    bool checkIsPrime(int number);
 public:
     Node(int data);
     int getData();
