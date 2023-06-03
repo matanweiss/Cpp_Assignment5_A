@@ -56,30 +56,28 @@ public:
     bool operator<(const Iterator &other) const;
     bool operator>(const Iterator &other) const;
     int getType() const;
-    // virtual Iterator &operator++() = 0;
-    // virtual const Iterator &begin() const = 0;
-    // virtual const Iterator &end() const = 0;
+    virtual Iterator &operator++() = 0;
+    virtual Iterator &begin() const = 0;
+    virtual Iterator &end() const = 0;
 };
 
 class MagicalContainer::AscendingIterator : public MagicalContainer::Iterator
 {
 public:
     AscendingIterator(const MagicalContainer &container);
-    AscendingIterator &operator++();
-    AscendingIterator begin() const;
-    AscendingIterator end() const;
     AscendingIterator operator=(const AscendingIterator &other);
-    // Iterator &operator++() override;
-    // const Iterator &begin() const override;
-    // const Iterator &end() const override;
+    ~AscendingIterator() {}
+    AscendingIterator &operator++() override;
+     AscendingIterator &begin() const override;
+     AscendingIterator &end() const override;
 };
 
-class MagicalContainer::PrimeIterator : public MagicalContainer::Iterator
-{
-public:
-    PrimeIterator(const MagicalContainer &container);
-    PrimeIterator &operator++();
-    PrimeIterator begin() const;
-    PrimeIterator end() const;
-    PrimeIterator operator=(const PrimeIterator &other);
-};
+// class MagicalContainer::PrimeIterator : public MagicalContainer::Iterator
+// {
+// public:
+//     PrimeIterator(const MagicalContainer &container);
+//     PrimeIterator &operator++();
+//     PrimeIterator begin() const;
+//     PrimeIterator end() const;
+//     PrimeIterator operator=(const PrimeIterator &other);
+// };

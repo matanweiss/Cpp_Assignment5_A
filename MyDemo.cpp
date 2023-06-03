@@ -62,34 +62,34 @@ int main()
     container.printList();
 
         // Use PrimeIterator to display prime numbers only
-    std::cout << "Prime numbers:\n";
-    MagicalContainer::PrimeIterator primeIter(container);
-    for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
-        std::cout << *it << ' ';  // 2 3 17 
-    }
-    std::cout << std::endl;
+    // std::cout << "Prime numbers:\n";
+    // MagicalContainer::PrimeIterator primeIter(container);
+    // for (auto it = primeIter.begin(); it != primeIter.end(); ++it) {
+    //     std::cout << *it << ' ';  // 2 3 17 
+    // }
+    // std::cout << std::endl;
 
-    MagicalContainer::PrimeIterator primeIterator1(container);
-    MagicalContainer::PrimeIterator primeIterator2(container);
-    ++primeIterator2;
-    ++primeIterator2;
-    if (primeIterator1 < primeIterator2)
-        cout << "OK" << endl;
-    if (!(primeIterator1 > primeIterator2))
-        cout << "OK" << endl;
-    ++primeIterator1;
-    if (primeIterator1 < primeIterator2)
-        cout << "OK" << endl;
-    ++primeIterator1;
-    if (!(primeIterator1 < primeIterator2))
-        cout << "OK" << endl;
-    if(primeIterator1 == primeIterator2)
-        cout << "OK" << endl;
-    ++primeIterator1;
-    if(primeIterator1 != primeIterator2)
-        cout << "OK" << endl;
+    // MagicalContainer::PrimeIterator primeIterator1(container);
+    // MagicalContainer::PrimeIterator primeIterator2(container);
+    // ++primeIterator2;
+    // ++primeIterator2;
+    // if (primeIterator1 < primeIterator2)
+    //     cout << "OK" << endl;
+    // if (!(primeIterator1 > primeIterator2))
+    //     cout << "OK" << endl;
+    // ++primeIterator1;
+    // if (primeIterator1 < primeIterator2)
+    //     cout << "OK" << endl;
+    // ++primeIterator1;
+    // if (!(primeIterator1 < primeIterator2))
+    //     cout << "OK" << endl;
+    // if(primeIterator1 == primeIterator2)
+    //     cout << "OK" << endl;
+    // ++primeIterator1;
+    // if(primeIterator1 != primeIterator2)
+    //     cout << "OK" << endl;
 
-    container.printList();
+    // container.printList();
 
     return 0;
 }
