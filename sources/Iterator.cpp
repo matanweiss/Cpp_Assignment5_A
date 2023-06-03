@@ -29,6 +29,21 @@ bool MagicalContainer::Iterator::operator>(const Iterator &other) const
     return !(*this < other || *this == other);
 }
 
+Node *MagicalContainer::Iterator::getCurr()
+{
+    return curr;
+}
+
+void MagicalContainer::Iterator::setCurr(Node *curr)
+{
+    this->curr = curr;
+}
+
+const MagicalContainer &MagicalContainer::Iterator::getContainer() const
+{
+    return container;
+}
+
 // MagicalContainer::Iterator &MagicalContainer::Iterator::operator++()
 // {
 //     if (!curr)

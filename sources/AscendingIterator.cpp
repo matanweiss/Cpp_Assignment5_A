@@ -1,4 +1,4 @@
-// #include "MagicalContainer.hpp"
+#include "AscendingIterator.hpp"
 
 // // MagicalContainer::AscendingIterator::AscendingIterator() : it(nodes.begin()) {}
 
@@ -6,30 +6,35 @@
 
 // MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &other, list<Node *>::const_iterator it) : it(it), container(other) {}
 
-// MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &container) : container(container), it(container.getBeginIterator()) {}
+AscendingIterator::AscendingIterator(const MagicalContainer &container) : Iterator(container)
+{
+    setCurr(container.getHead());
+}
 
 // int MagicalContainer::AscendingIterator ::operator*() const
 // {
 //     return (*it)->getData();
 // }
 
-// MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator ::operator++()
-// {
-//     if (!*it)
-//         throw runtime_error("Iterator has aleady ended");
-//     ++it;
-//     return *this;
-// }
+AscendingIterator &AscendingIterator ::operator++()
+{
+    if (!getCurr())
+        throw runtime_error("Iterator has aleady ended");
+    setCurr(getCurr()->getNext());
+    return *this;
+}
 
-// MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin()
-// {
-//     return AscendingIterator(container);
-// }
+MagicalContainer::Iterator *AscendingIterator::begin() const
+{
+    return new AscendingIterator(getContainer());
+}
 
-// MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end()
-// {
-//     return AscendingIterator(container, container.getEndIterator());
-// }
+MagicalContainer::Iterator *AscendingIterator::end() const
+{
+    AscendingIterator *iter = new AscendingIterator(getContainer());
+    iter->setCurr(NULL);
+    return iter;
+}
 
 // MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::operator=(const AscendingIterator &other)
 // {

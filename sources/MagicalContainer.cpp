@@ -190,3 +190,8 @@ void MagicalContainer::addToList(Node *newNode, Node *lastNode)
 
     listSize++;
 }
+
+Node *MagicalContainer::getHead() const
+{
+    return head;
+}

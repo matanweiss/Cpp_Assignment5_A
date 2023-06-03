@@ -1,7 +1,6 @@
 #include "Node.hpp"
-#include "HelperFunctions.hpp"
 
-Node::Node(int data) : data(data), nextPrime(NULL), prevPrime(NULL), isPrime(checkIsPrime(data))
+Node::Node(int data) : data(data), nextPrime(NULL), prevPrime(NULL), isPrime(checkIsPrime())
 {
 }
 
@@ -45,10 +44,10 @@ Node *Node::getPrev()
     return prev;
 }
 
-bool Node::checkIsPrime(int number)
+bool Node::checkIsPrime()
 {
-    for (int i = 2; i * i <= number; i++)
-        if (number % i == 0)
+    for (int i = 2; i * i <= data; i++)
+        if (data % i == 0)
             return false;
     return true;
 }

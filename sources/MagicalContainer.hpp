@@ -1,6 +1,5 @@
 #pragma once
 #include "Node.hpp"
-#include "HelperFunctions.hpp"
 #include <list>
 #include <iterator>
 namespace ariel
@@ -31,6 +30,7 @@ public:
     void printPrimes();
     size_t size();
     Node *getFirstPrime();
+    Node* getHead() const;
     ~MagicalContainer();
 };
 
@@ -43,8 +43,11 @@ public:
     Iterator(const MagicalContainer &container);
     int operator*() const;
     virtual Iterator &operator++() = 0;
-    virtual Iterator &begin() const = 0;
-    virtual Iterator &end() const = 0;
+    virtual Iterator *begin() const = 0;
+    virtual Iterator *end() const = 0;
+    Node* getCurr();
+    const MagicalContainer & getContainer() const;
+    void setCurr(Node* curr);
     bool operator==(const Iterator &other) const;
     bool operator!=(const Iterator &other) const;
     bool operator<(const Iterator &other) const;
