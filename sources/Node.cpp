@@ -1,6 +1,6 @@
 #include "Node.hpp"
 
-Node::Node(int data) : data(data), nextPrime(NULL), prevPrime(NULL), isPrime(checkIsPrime())
+Node::Node(int data) : data(data), nextPrime(NULL), prevPrime(NULL), isPrime(checkIsPrime()),prev(NULL),next(NULL)
 {
 }
 

@@ -33,6 +33,7 @@ public:
     void addNonPrimeElement(Node *newNode);
     void removeElement(int data);
     void printList();
+    void printListAddresses();
     void printPrimes();
     size_t size() const;
     Node *getFirstPrime() const;
@@ -98,4 +99,6 @@ public:
     SideCrossIterator operator=(const SideCrossIterator &other);
     int operator*() override;
     virtual bool operator<(const SideCrossIterator &other) const;
+    ~SideCrossIterator() {}
+
 };

@@ -67,7 +67,6 @@ void MagicalContainer::removeElement(int data)
         }
         curr = curr->getNext();
     }
-    listSize--;
 }
 
 void MagicalContainer::removeFromPrimesList(Node *curr)
@@ -102,6 +101,18 @@ void MagicalContainer::printList()
     while (curr)
     {
         cout << " -> " << curr->getData();
+        curr = curr->getNext();
+    }
+    cout << endl;
+}
+
+void MagicalContainer::printListAddresses()
+{
+    Node *curr = head;
+    cout << "HEAD";
+    while (curr)
+    {
+        cout << " -> " << curr;
         curr = curr->getNext();
     }
     cout << endl;

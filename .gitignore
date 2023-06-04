@@ -1,3 +1,5 @@
 *.o
 mydemo
 .vscode/
+demo
+test
