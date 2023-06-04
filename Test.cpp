@@ -14,13 +14,6 @@ TEST_CASE("MagicalContainer")
         CHECK_NOTHROW(container.addElement(9));
     }
 
-    // SUBCASE("adding the same element multiple times"){
-    // CHECK_NOTHROW(container.addElement(5));
-    // CHECK_NOTHROW(container.addElement(1));
-    // CHECK_NOTHROW(container.addElement(1));
-    // CHECK_NOTHROW(container.addElement(1));
-    // }
-
     SUBCASE("removing existing elements")
     {
         CHECK_NOTHROW(container.removeElement(2));
@@ -97,17 +90,157 @@ TEST_CASE("AscendingIterator")
         MagicalContainer::AscendingIterator ascendingIterator2(container);
         ++ascendingIterator2;
         ++ascendingIterator2;
-        CHECK (ascendingIterator1 < ascendingIterator2);
-        CHECK_FALSE (ascendingIterator1 > ascendingIterator2);
+        CHECK(ascendingIterator1 < ascendingIterator2);
+        CHECK_FALSE(ascendingIterator1 > ascendingIterator2);
         ++ascendingIterator1;
         CHECK(ascendingIterator1 < ascendingIterator2);
         ++ascendingIterator1;
-        if (!(ascendingIterator1 < ascendingIterator2))
-            cout << "OK" << endl;
-        if (ascendingIterator1 == ascendingIterator2)
-            cout << "OK" << endl;
+        CHECK_FALSE(ascendingIterator1 < ascendingIterator2);
+        CHECK(ascendingIterator1 == ascendingIterator2);
         ++ascendingIterator1;
-        if (ascendingIterator1 != ascendingIterator2)
-            cout << "OK" << endl;
+        CHECK(ascendingIterator1 != ascendingIterator2);
     }
+}
+
+TEST_CASE("PrimeIterator")
+{
+    MagicalContainer container;
+    CHECK_NOTHROW(container.addElement(7));
+    CHECK_NOTHROW(container.addElement(1));
+    CHECK_NOTHROW(container.addElement(11));
+    CHECK_NOTHROW(container.addElement(19));
+    CHECK_NOTHROW(container.addElement(101));
+    CHECK_NOTHROW(container.addElement(3));
+
+    SUBCASE("order of iterator")
+    {
+        MagicalContainer::PrimeIterator PrimeIterator(container);
+        CHECK(*PrimeIterator == 1);
+        ++PrimeIterator;
+        CHECK(*PrimeIterator == 3);
+        ++PrimeIterator;
+        CHECK(*PrimeIterator == 7);
+        ++PrimeIterator;
+        CHECK(*PrimeIterator == 11);
+        ++PrimeIterator;
+        CHECK(*PrimeIterator == 19);
+        ++PrimeIterator;
+        CHECK(*PrimeIterator == 101);
+        ++PrimeIterator;
+        CHECK_THROWS(*PrimeIterator);
+    }
+
+    SUBCASE("GT and LT operators")
+    {
+        MagicalContainer::PrimeIterator PrimeIterator1(container);
+        MagicalContainer::PrimeIterator PrimeIterator2(container);
+        ++PrimeIterator2;
+        ++PrimeIterator2;
+        CHECK(PrimeIterator1 < PrimeIterator2);
+        CHECK_FALSE(PrimeIterator1 > PrimeIterator2);
+        ++PrimeIterator1;
+        CHECK(PrimeIterator1 < PrimeIterator2);
+        ++PrimeIterator1;
+        CHECK_FALSE(PrimeIterator1 < PrimeIterator2);
+        CHECK(PrimeIterator1 == PrimeIterator2);
+        ++PrimeIterator1;
+        CHECK(PrimeIterator1 != PrimeIterator2);
+    }
+}
+
+TEST_CASE("SideCrossIterator")
+{
+    MagicalContainer container;
+    CHECK_NOTHROW(container.addElement(7));
+    CHECK_NOTHROW(container.addElement(1));
+    CHECK_NOTHROW(container.addElement(11));
+    CHECK_NOTHROW(container.addElement(19));
+    CHECK_NOTHROW(container.addElement(101));
+    CHECK_NOTHROW(container.addElement(3));
+
+    SUBCASE("order of iterator")
+    {
+        MagicalContainer::SideCrossIterator SideCrossIterator(container);
+        CHECK(*SideCrossIterator == 1);
+        ++SideCrossIterator;
+        CHECK(*SideCrossIterator == 101);
+        ++SideCrossIterator;
+        CHECK(*SideCrossIterator == 3);
+        ++SideCrossIterator;
+        CHECK(*SideCrossIterator == 19);
+        ++SideCrossIterator;
+        CHECK(*SideCrossIterator == 7);
+        ++SideCrossIterator;
+        CHECK(*SideCrossIterator == 11);
+        ++SideCrossIterator;
+        CHECK_THROWS(*SideCrossIterator);
+    }
+
+    SUBCASE("GT and LT operators")
+    {
+        MagicalContainer::SideCrossIterator SideCrossIterator1(container);
+        MagicalContainer::SideCrossIterator SideCrossIterator2(container);
+        ++SideCrossIterator2;
+        ++SideCrossIterator2;
+        CHECK(SideCrossIterator1 < SideCrossIterator2);
+        CHECK_FALSE(SideCrossIterator1 > SideCrossIterator2);
+        ++SideCrossIterator1;
+        CHECK(SideCrossIterator1 < SideCrossIterator2);
+        ++SideCrossIterator1;
+        CHECK_FALSE(SideCrossIterator1 < SideCrossIterator2);
+        CHECK(SideCrossIterator1 == SideCrossIterator2);
+        ++SideCrossIterator1;
+        CHECK(SideCrossIterator1 != SideCrossIterator2);
+    }
+}
+
+TEST_CASE("Different iterator types")
+{
+    MagicalContainer container;
+    container.addElement(12);
+    container.addElement(2);
+    container.addElement(18);
+    container.addElement(29);
+
+    MagicalContainer::AscendingIterator ascendingIterator(container);
+    MagicalContainer::SideCrossIterator crossIterator(container);
+    MagicalContainer::PrimeIterator primeIterator(container);
+    bool temp;
+
+    SUBCASE("equality operator")
+    {
+        CHECK_THROWS(temp = (ascendingIterator == crossIterator));
+        CHECK_THROWS(temp = (ascendingIterator == primeIterator));
+        CHECK_THROWS(temp = (primeIterator == crossIterator));
+    }
+
+    SUBCASE("inequality operator")
+    {
+        CHECK_THROWS(temp = (ascendingIterator != crossIterator));
+        CHECK_THROWS(temp = (ascendingIterator != primeIterator));
+        CHECK_THROWS(temp = (primeIterator != crossIterator));
+    }
+}
+
+TEST_CASE("Iterators with different containers")
+{
+    MagicalContainer container1;
+    MagicalContainer container2;
+    CHECK_NOTHROW(container1.addElement(10));
+    CHECK_NOTHROW(container1.addElement(1));
+    CHECK_NOTHROW(container1.addElement(2));
+    CHECK_NOTHROW(container2.addElement(20));
+    CHECK_NOTHROW(container2.addElement(30));
+    CHECK_NOTHROW(container2.addElement(10));
+
+    MagicalContainer::SideCrossIterator crossIterator1(container1);
+    MagicalContainer::SideCrossIterator crossIterator2(container2);
+    MagicalContainer::AscendingIterator ascendingIterator1(container1);
+    MagicalContainer::PrimeIterator primeIterator2(container2);
+
+    bool temp;
+
+    CHECK_THROWS(temp = (crossIterator1 == crossIterator2));
+    CHECK_THROWS(temp = (crossIterator1 == primeIterator2));
+    CHECK_THROWS(temp = (ascendingIterator1 == primeIterator2));
 }

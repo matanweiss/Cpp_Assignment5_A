@@ -13,6 +13,10 @@ int MagicalContainer::Iterator::operator*()
 
 bool MagicalContainer::Iterator::operator==(const Iterator &other) const
 {
+    if (&container != &other.container)
+        throw runtime_error("cannot compare Iterators with different containers");
+    if (type != other.type)
+        throw runtime_error("cannot compare Iterators with different type");
     int thisValue = 0;
     int otherValue = 0;
     if (curr)
