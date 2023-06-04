@@ -22,17 +22,16 @@ MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator ::opera
     return *this;
 }
 
-MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::begin() const
+MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::begin() const
 {
-    SideCrossIterator *iter = new SideCrossIterator(getContainer());
-    return *iter;
+    return SideCrossIterator(getContainer());
 }
 
-MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::end() const
+MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::end() const
 {
-    SideCrossIterator *iter = new SideCrossIterator(getContainer());
-    iter->setCurr(NULL);
-    return *iter;
+    SideCrossIterator iter(getContainer());
+    iter.setCurr(NULL);
+    return iter;
 }
 
 MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator &other)

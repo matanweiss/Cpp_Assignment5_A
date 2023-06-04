@@ -21,15 +21,14 @@ MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operat
     return *this;
 }
 
- MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::begin() const
+ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin() const
 {
-    AscendingIterator*  iter = new AscendingIterator(getContainer());
-    return *iter;
+    return AscendingIterator(getContainer());
 }
 
- MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::end() const
+ MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() const
 {
-    AscendingIterator*  iter = new AscendingIterator(getContainer());
-    iter->setCurr(NULL);
-    return *iter;
+    AscendingIterator iter(getContainer());
+    iter.setCurr(NULL);
+    return iter;
 }

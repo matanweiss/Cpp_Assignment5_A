@@ -13,17 +13,16 @@ MagicalContainer::PrimeIterator &MagicalContainer::PrimeIterator ::operator++()
     return *this;
 }
 
-MagicalContainer::PrimeIterator &MagicalContainer::PrimeIterator::begin() const
+MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::begin() const
 {
-    PrimeIterator *iter = new PrimeIterator(getContainer());
-    return *iter;
+    return PrimeIterator(getContainer());
 }
 
-MagicalContainer::PrimeIterator &MagicalContainer::PrimeIterator::end() const
+MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::end() const
 {
-    PrimeIterator* iter = new PrimeIterator(getContainer());
-    iter->setCurr(NULL);
-    return *iter;
+    PrimeIterator iter(getContainer());
+    iter.setCurr(NULL);
+    return iter;
 }
 
 MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::operator=(const PrimeIterator &other)

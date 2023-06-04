@@ -56,3 +56,42 @@ TEST_CASE("MagicalContainer")
         CHECK(container.size() == 0);
     }
 }
+
+TEST_CASE("AscendingIterator")
+{
+    MagicalContainer container;
+    CHECK_NOTHROW(container.addElement(4));
+    CHECK_NOTHROW(container.addElement(1));
+    CHECK_NOTHROW(container.addElement(11));
+    CHECK_NOTHROW(container.addElement(7));
+    CHECK_NOTHROW(container.addElement(18));
+    CHECK_NOTHROW(container.addElement(2));
+    CHECK_NOTHROW(container.addElement(8));
+    CHECK_NOTHROW(container.addElement(5));
+
+    SUBCASE("order of iterator")
+    {
+        MagicalContainer::AscendingIterator ascendingIterator(container);
+        CHECK(*ascendingIterator == 1);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 2);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 4);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 5);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 7);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 8);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 11);
+        ++ascendingIterator;
+        CHECK(*ascendingIterator == 18);
+        ++ascendingIterator;
+        CHECK_THROWS(*ascendingIterator);
+    }
+
+    SUBCASE("GT and LT operators"){
+        MagicalContainer::AscendingIterator ascendingIterator(container);
+    }
+}
