@@ -52,6 +52,32 @@ const MagicalContainer &MagicalContainer::Iterator::getContainer() const
     return container;
 }
 
-    int MagicalContainer::Iterator::getType() const{
-        return type;
-    }
+int MagicalContainer::Iterator::getType() const
+{
+    return type;
+}
+
+MagicalContainer::Iterator::Iterator(const Iterator &other) : container(other.container), type(other.type), curr(other.curr)
+{
+}
+
+MagicalContainer::Iterator &MagicalContainer::Iterator::operator=(const Iterator &other)
+{
+    if (&container != &other.container)
+        throw runtime_error("cannot assign from an Iterator of a different container");
+    curr = other.curr;
+    type = other.type;
+    return *this;
+}
+
+MagicalContainer::Iterator::Iterator(Iterator &&other) noexcept : container(other.container), curr(other.curr), type(other.type)
+{
+}
+MagicalContainer::Iterator &MagicalContainer::Iterator::operator=(Iterator &&other) noexcept
+{
+    if (&container != &other.container)
+        return *this;
+    curr = other.curr;
+    type = other.type;
+    return *this;
+}

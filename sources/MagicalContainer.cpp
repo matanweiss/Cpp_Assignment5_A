@@ -236,7 +236,7 @@ MagicalContainer &MagicalContainer::operator=(MagicalContainer &&other) noexcept
     return *this;
 }
 
-MagicalContainer &MagicalContainer::operator=(const MagicalContainer &other)
+MagicalContainer &MagicalContainer::operator=(const MagicalContainer &other) 
 {
     firstPrime = NULL;
     head = NULL;

@@ -91,8 +91,23 @@ TEST_CASE("AscendingIterator")
         CHECK_THROWS(*ascendingIterator);
     }
 
-    // SUBCASE("GT and LT operators"){
-    //     MagicalContainer::AscendingIterator ascendingIterator1(container);
-    //     MagicalContainer::AscendingIterator ascendingIterator2(container);
-    // }
+    SUBCASE("GT and LT operators")
+    {
+        MagicalContainer::AscendingIterator ascendingIterator1(container);
+        MagicalContainer::AscendingIterator ascendingIterator2(container);
+        ++ascendingIterator2;
+        ++ascendingIterator2;
+        CHECK (ascendingIterator1 < ascendingIterator2);
+        CHECK_FALSE (ascendingIterator1 > ascendingIterator2);
+        ++ascendingIterator1;
+        CHECK(ascendingIterator1 < ascendingIterator2);
+        ++ascendingIterator1;
+        if (!(ascendingIterator1 < ascendingIterator2))
+            cout << "OK" << endl;
+        if (ascendingIterator1 == ascendingIterator2)
+            cout << "OK" << endl;
+        ++ascendingIterator1;
+        if (ascendingIterator1 != ascendingIterator2)
+            cout << "OK" << endl;
+    }
 }

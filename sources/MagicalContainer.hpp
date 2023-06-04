@@ -40,10 +40,10 @@ public:
     Node *getHead() const;
     Node *getTail() const;
     ~MagicalContainer();
-    MagicalContainer(const MagicalContainer& other);
-    MagicalContainer(MagicalContainer&& other) noexcept;
-    MagicalContainer& operator=(MagicalContainer&& other) noexcept;
-    MagicalContainer &operator=(const MagicalContainer &other);
+    MagicalContainer(const MagicalContainer &other);
+    MagicalContainer(MagicalContainer &&other) noexcept;
+    MagicalContainer &operator=(MagicalContainer &&other) noexcept;
+    MagicalContainer &operator=(const  MagicalContainer& other) ;
 };
 
 class MagicalContainer::Iterator
@@ -64,6 +64,12 @@ public:
     virtual bool operator>(const Iterator &other) const;
     int getType() const;
     virtual Iterator &operator++() = 0;
+    virtual ~Iterator() = default;
+    Iterator(const Iterator& other);
+    Iterator& operator=(const Iterator& other);
+
+    Iterator(Iterator&& other) noexcept;
+    Iterator& operator=(Iterator&& other) noexcept;
 };
 
 class MagicalContainer::AscendingIterator : public MagicalContainer::Iterator
@@ -75,7 +81,7 @@ public:
     AscendingIterator &operator++() override;
     AscendingIterator begin() const;
     AscendingIterator end() const;
-    ~AscendingIterator() = default;
+    ~AscendingIterator() override = default;
     AscendingIterator(AscendingIterator &&other) noexcept = default;
     AscendingIterator &operator=(AscendingIterator &&other) noexcept;
 };
@@ -89,7 +95,7 @@ public:
     PrimeIterator begin() const;
     PrimeIterator end() const;
     PrimeIterator &operator=(const PrimeIterator &other);
-    ~PrimeIterator() = default;
+    ~PrimeIterator() override = default;
     PrimeIterator(PrimeIterator &&other) noexcept = default;
     PrimeIterator &operator=(PrimeIterator &&other) noexcept;
 };
@@ -105,9 +111,9 @@ public:
     SideCrossIterator &operator++() override;
     SideCrossIterator begin() const;
     SideCrossIterator end() const;
-    SideCrossIterator& operator=(const SideCrossIterator &other);
-    ~SideCrossIterator() = default;
-    SideCrossIterator(SideCrossIterator &&other) noexcept = default;                   // Move constructor
+    SideCrossIterator &operator=(const SideCrossIterator &other);
+    ~SideCrossIterator() override = default;
+    SideCrossIterator(SideCrossIterator &&other) noexcept = default;  // Move constructor
     SideCrossIterator &operator=(SideCrossIterator &&other) noexcept; // Move assignment operator
     int operator*() override;
     virtual bool operator<(const SideCrossIterator &other) const;
