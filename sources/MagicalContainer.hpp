@@ -68,16 +68,17 @@ public:
     AscendingIterator operator=(const AscendingIterator &other);
     ~AscendingIterator() {}
     AscendingIterator &operator++() override;
-     AscendingIterator &begin() const override;
-     AscendingIterator &end() const override;
+    AscendingIterator &begin() const override;
+    AscendingIterator &end() const override;
 };
 
-// class MagicalContainer::PrimeIterator : public MagicalContainer::Iterator
-// {
-// public:
-//     PrimeIterator(const MagicalContainer &container);
-//     PrimeIterator &operator++();
-//     PrimeIterator begin() const;
-//     PrimeIterator end() const;
-//     PrimeIterator operator=(const PrimeIterator &other);
-// };
+class MagicalContainer::PrimeIterator : public MagicalContainer::Iterator
+{
+public:
+    PrimeIterator(const MagicalContainer &container);
+    PrimeIterator &operator++() override;
+    PrimeIterator &begin() const override;
+    PrimeIterator &end() const override;
+    PrimeIterator operator=(const PrimeIterator &other);
+};
+
