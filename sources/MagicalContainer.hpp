@@ -1,7 +1,5 @@
 #pragma once
 #include "Node.hpp"
-#include <list>
-#include <iterator>
 
 #define ASCENDING 1
 #define CROSS 2
