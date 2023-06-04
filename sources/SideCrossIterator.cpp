@@ -1,5 +1,9 @@
 #include "MagicalContainer.hpp"
 
+MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator &other) : Iterator(other.getContainer(), other.getCurr(), other.getType())
+{
+}
+
 MagicalContainer::SideCrossIterator::SideCrossIterator(const MagicalContainer &container) : Iterator(container, container.getHead(), CROSS), last(container.getTail()), count(0)
 {
 }
@@ -34,7 +38,7 @@ MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::end() c
     return iter;
 }
 
-MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator &other)
+MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator=(const SideCrossIterator &other)
 {
     if (this != &other)
         throw runtime_error("cannot assign from an iterator a different container");
@@ -65,4 +69,13 @@ bool MagicalContainer::SideCrossIterator::operator<(const SideCrossIterator &oth
     if (other.getType() != CROSS)
         throw runtime_error("cannot compare iterator from a different type");
     return count < other.count;
+}
+
+MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator ::operator=(SideCrossIterator &&other) noexcept
+{
+    if (this == &other)
+        return *this;
+    if (&getContainer() == &other.getContainer())
+        setCurr(other.getCurr());
+    return *this;
 }

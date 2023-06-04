@@ -91,7 +91,8 @@ TEST_CASE("AscendingIterator")
         CHECK_THROWS(*ascendingIterator);
     }
 
-    SUBCASE("GT and LT operators"){
-        MagicalContainer::AscendingIterator ascendingIterator(container);
-    }
+    // SUBCASE("GT and LT operators"){
+    //     MagicalContainer::AscendingIterator ascendingIterator1(container);
+    //     MagicalContainer::AscendingIterator ascendingIterator2(container);
+    // }
 }

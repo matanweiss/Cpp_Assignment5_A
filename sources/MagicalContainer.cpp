@@ -211,3 +211,42 @@ Node *MagicalContainer::getTail() const
 {
     return tail;
 }
+
+MagicalContainer::MagicalContainer(const MagicalContainer &other) : firstPrime(NULL), head(NULL), tail(NULL), listSize(0)
+{
+    Node *otherCurr = other.getHead();
+    while (otherCurr)
+    {
+        addElement(otherCurr->getData());
+        otherCurr = otherCurr->getNext();
+    }
+}
+MagicalContainer::MagicalContainer(MagicalContainer &&other) noexcept : firstPrime(other.getFirstPrime()), head(other.getHead()), tail(other.getTail()), listSize(other.size())
+{
+}
+
+MagicalContainer &MagicalContainer::operator=(MagicalContainer &&other) noexcept
+{
+    if (this == &other)
+        return *this;
+    firstPrime = other.getFirstPrime();
+    head = other.getHead();
+    tail = other.getTail();
+    listSize = other.size();
+    return *this;
+}
+
+MagicalContainer &MagicalContainer::operator=(const MagicalContainer &other)
+{
+    firstPrime = NULL;
+    head = NULL;
+    tail = NULL;
+    listSize = 0;
+    Node *otherCurr = other.getHead();
+    while (otherCurr)
+    {
+        addElement(otherCurr->getData());
+        otherCurr = otherCurr->getNext();
+    }
+    return *this;
+}

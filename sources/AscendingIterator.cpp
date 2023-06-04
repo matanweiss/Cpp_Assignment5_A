@@ -4,7 +4,11 @@ MagicalContainer::AscendingIterator::AscendingIterator(const MagicalContainer &c
 {
 }
 
-MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::operator=(const AscendingIterator &other)
+MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator &other) : Iterator(other.getContainer(), other.getCurr(), other.getType())
+{
+}
+
+MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operator=(const AscendingIterator &other)
 {
     if (this != &other)
         throw runtime_error("cannot assign from an iterator a different container");
@@ -21,14 +25,23 @@ MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operat
     return *this;
 }
 
- MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin() const
+MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin() const
 {
     return AscendingIterator(getContainer());
 }
 
- MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() const
+MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::end() const
 {
     AscendingIterator iter(getContainer());
     iter.setCurr(NULL);
     return iter;
+}
+
+MagicalContainer::AscendingIterator &MagicalContainer::AscendingIterator::operator=(AscendingIterator &&other) noexcept
+{
+    if (this == &other)
+        return *this;
+    if (&getContainer() == &other.getContainer())
+        setCurr(other.getCurr());
+    return *this;
 }
