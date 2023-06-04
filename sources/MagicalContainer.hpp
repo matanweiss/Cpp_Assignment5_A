@@ -23,9 +23,10 @@ class MagicalContainer
     void removeFromList(Node *curr);
 
 public:
-    class PrimeIterator;
     class Iterator;
     class AscendingIterator;
+    class PrimeIterator;
+    class SideCrossIterator;
     MagicalContainer();
     void addElement(int data);
     void addPrimeElement(Node *newNode);
@@ -33,9 +34,10 @@ public:
     void removeElement(int data);
     void printList();
     void printPrimes();
-    size_t size();
+    size_t size() const;
     Node *getFirstPrime() const;
     Node *getHead() const;
+    Node *getTail() const;
     ~MagicalContainer();
 };
 
@@ -47,14 +49,14 @@ class MagicalContainer::Iterator
 
 public:
     Iterator(const MagicalContainer &container, Node *curr, int type);
-    int operator*();
+    virtual int operator*();
     Node *getCurr() const;
     const MagicalContainer &getContainer() const;
     void setCurr(Node *curr);
     bool operator==(const Iterator &other) const;
     bool operator!=(const Iterator &other) const;
-    bool operator<(const Iterator &other) const;
-    bool operator>(const Iterator &other) const;
+    virtual bool operator<(const Iterator &other) const;
+    virtual bool operator>(const Iterator &other) const;
     int getType() const;
     virtual Iterator &operator++() = 0;
     virtual Iterator &begin() const = 0;
@@ -66,10 +68,10 @@ class MagicalContainer::AscendingIterator : public MagicalContainer::Iterator
 public:
     AscendingIterator(const MagicalContainer &container);
     AscendingIterator operator=(const AscendingIterator &other);
-    ~AscendingIterator() {}
     AscendingIterator &operator++() override;
     AscendingIterator &begin() const override;
     AscendingIterator &end() const override;
+    ~AscendingIterator() {}
 };
 
 class MagicalContainer::PrimeIterator : public MagicalContainer::Iterator
@@ -80,5 +82,20 @@ public:
     PrimeIterator &begin() const override;
     PrimeIterator &end() const override;
     PrimeIterator operator=(const PrimeIterator &other);
+    ~PrimeIterator() {}
 };
 
+class MagicalContainer::SideCrossIterator : public MagicalContainer::Iterator
+{
+    Node *last;
+    int count;
+
+public:
+    SideCrossIterator(const MagicalContainer &container);
+    SideCrossIterator &operator++() override;
+    SideCrossIterator &begin() const override;
+    SideCrossIterator &end() const override;
+    SideCrossIterator operator=(const SideCrossIterator &other);
+    int operator*() override;
+    virtual bool operator<(const SideCrossIterator &other) const;
+};

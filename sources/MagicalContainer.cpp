@@ -135,7 +135,7 @@ MagicalContainer::~MagicalContainer()
     }
 }
 
-size_t MagicalContainer::size()
+size_t MagicalContainer::size() const
 {
     return listSize;
 }
@@ -194,4 +194,9 @@ void MagicalContainer::addToList(Node *newNode, Node *lastNode)
 Node *MagicalContainer::getHead() const
 {
     return head;
+}
+
+Node *MagicalContainer::getTail() const
+{
+    return tail;
 }
